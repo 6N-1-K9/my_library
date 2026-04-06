@@ -1,0 +1,17 @@
+{% extends 'library/base.html' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<h1>{{ page_title }}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Сохранить</button>
+</form>
+
+<p>
+    <a href="{% url 'book_list' %}">Назад к списку</a>
+</p>
+{% endblock %}

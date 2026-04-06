@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Моя библиотека{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #999;
+            padding: 8px;
+            text-align: left;
+        }
+
+        form {
+            margin: 0;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 95%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+
+        .top-actions {
+            margin-bottom: 20px;
+        }
+
+        .filter-form {
+            margin-bottom: 20px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        a, button {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    {% block content %}{% endblock %}
+</body>
+</html>

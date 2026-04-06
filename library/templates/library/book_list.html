@@ -1,0 +1,61 @@
+{% extends 'library/base.html' %}
+
+{% block title %}Библиотека{% endblock %}
+
+{% block content %}
+<h1>Библиотека</h1>
+
+<div class="top-actions">
+    <a href="{% url 'book_create' %}">Добавить книгу</a>
+</div>
+
+<form method="get" class="filter-form">
+    <table>
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Автор</th>
+                <th>Год выпуска</th>
+                <th>Действия</th>
+            </tr>
+            <tr>
+                <th>
+                    <input type="text" name="title" value="{{ title_query }}">
+                </th>
+                <th>
+                    <input type="text" name="author" value="{{ author_query }}">
+                </th>
+                <th>
+                    <input type="number" name="year" value="{{ year_query }}">
+                </th>
+                <th>
+                    <button type="submit">Найти</button>
+                    <a href="{% url 'book_list' %}">Сбросить</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.year }}</td>
+                    <td>
+                        <div class="button-group">
+                            <a href="{% url 'book_edit' book.pk %}">Редактировать</a>
+                            <form method="post" action="{% url 'book_delete' book.pk %}">
+                                {% csrf_token %}
+                                <button type="submit">Удалить</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">Книги не найдены.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</form>
+{% endblock %}
